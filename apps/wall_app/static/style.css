@@ -1,0 +1,38 @@
+* {
+    /* background-color: aquamarine; */
+}
+
+#wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+#top-area p {
+    /* display: inline; */
+}
+
+.text-box-area {
+    border: solid 4px black;
+    height: 70px;
+}
+
+button {
+    float: right;
+    height: 30px;
+    width: 120px;
+}
+
+.message-button {
+    background-color: blue;
+    color: white;
+}
+
+.comment-button {
+    background-color: green;
+    color: white;
+}
+
+.indent {
+    margin-left: 40px;
+    margin-bottom: 40px;
+}

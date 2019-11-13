@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wall</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="top-area">
+        <h1>CodingDojo Wall</h1>
+        <p>Welcome {{ user.first_name }}</p>
+        <a href="/logout">log off</a>
+        <hr>
+    </div>
+
+    <div id="wrapper">
+
+        <div>
+            <form action="/message/{{user.id}}" method="POST">
+            {% csrf_token %}
+                <h3>Post a Message</h3>
+                <div class="text-box-area">
+                    <textarea name="message" cols="247" rows="5"></textarea>
+                </div>
+                <br>
+                <button class="message-button">Post a message</button>
+            </form>
+        </div>
+
+        <div>
+            {% for message in all_messages %}
+            <p>{{ message.user.first_name }} {{ message.user.last_name }} {{ message.created_at }}</p>
+            <p class="indent">{{ message.message }}</p>
+
+            <div>
+                {% for comment in message.comment.all %}
+                <p class="indent">{{ comment.user.first_name }} {{ comment.user.last_name }} {{ comment.created_at }}</p>
+                <p class="indent">{{ comment.comment }}</p>
+                {% endfor %}
+            </div>
+
+            <div>
+                <form action="/comment/{{user.id}}/{{message.id}}" method="POST">
+                {% csrf_token %}
+                    <h4>Post a Comment</h4>
+                    <div class="text-box-area">
+                        <textarea name="comment" cols="247" rows="5"></textarea>
+                    </div>
+                    <br>
+                    <button class="comment-button">Post a comment</button>
+                </form>
+            </div>
+
+            
+    
+            
+            {% endfor %}
+        </div>
+
+        
+
+    </div>
+
+</body>
+</html>
